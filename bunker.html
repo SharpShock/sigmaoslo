@@ -11,7 +11,7 @@
       background-color: #f0f0f0;
       padding: 20px;
     }
-    
+
     h1 {
       color: #333;
     }
@@ -21,8 +21,8 @@
       width: 100px;
       height: 100px;
       background-image: url('target.jpg'); /* Add custom PNG image */
-      background-size: cover; /* Ensure the image covers the area */
-      border-radius: 50%; /* Optional: Keep the rounded shape if the image is circular */
+      background-size: cover;
+      border-radius: 50%;
       cursor: pointer;
       transition: transform 0.3s ease;
     }
@@ -61,6 +61,8 @@
   <button onclick="startGame()">Bora apaz</button>
 
   <script>
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
     let score = 0;
     let timeLeft = 30; // Game timer (30 seconds)
     let gameInterval;
@@ -68,63 +70,57 @@
     let gameStarted = false;
     let timerInterval;
 
-    // Function to start the game
     function startGame() {
       if (gameStarted) return;
 
       gameStarted = true;
       score = 0;
+      timeLeft = 30;
       document.getElementById("score").textContent = score;
       document.getElementById("time").textContent = timeLeft;
-      
-      // Start the game logic
+
       startTarget();
 
-      // Start the timer countdown
       timerInterval = setInterval(function () {
         timeLeft--;
         document.getElementById("time").textContent = timeLeft;
-        
+
         if (timeLeft <= 0) {
           clearInterval(timerInterval);
+          clearInterval(gameInterval);
+          if (target) target.remove();
           endGame();
         }
-      }, 1000); // Update every second
+      }, 1000);
     }
 
-    // Function to create a random target
     function createTarget() {
       target = document.createElement("div");
       target.classList.add("target");
 
-      // Position the target randomly
       target.style.top = Math.random() * (window.innerHeight - 100) + "px";
       target.style.left = Math.random() * (window.innerWidth - 100) + "px";
 
       document.body.appendChild(target);
 
-      // Add click event to the target
       target.addEventListener("click", targetClicked);
     }
 
-    // Function to start the target appearing every 1-2 seconds
     function startTarget() {
       gameInterval = setInterval(function () {
         if (target) {
           target.remove();
         }
         createTarget();
-      }, Math.random() * 500 + 700); // Random time between 1-2 seconds
+      }, isMobile ? Math.random() * 500 + 1000 : Math.random() * 300 + 400);
     }
 
-    // Function when the target is clicked
     function targetClicked() {
       score++;
       document.getElementById("score").textContent = score;
       target.remove();
     }
 
-    // Function to end the game
     function endGame() {
       alert("Jogas bué: " + score);
       location.reload(); // Reload the page to restart the game
