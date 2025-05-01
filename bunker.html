@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Jogo: Clique no Alvo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+    
+    h1 {
+      color: #333;
+    }
+
+    .target {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .score {
+      font-size: 1.5em;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <h1>Espanca-o-Celso!</h1>
+  <p>O objetivo é espancar o sigma até acabar o tempo.</p>
+
+  <!-- Score Display -->
+  <div class="score">Pontuação: <span id="score">0</span></div>
+
+  <!-- Timer Display -->
+  <div class="score">Tempo Restante: <span id="time">30</span> segundos</div>
+
+  <!-- Start Button -->
+  <button onclick="startGame()">Bora apaz</button>
+
+  <script>
+    let score = 0;
+    let timeLeft = 30; // Game timer (30 seconds)
+    let gameInterval;
+    let target;
+    let gameStarted = false;
+    let timerInterval;
+
+    // Function to start the game
+    function startGame() {
+      if (gameStarted) return;
+
+      gameStarted = true;
+      score = 0;
+      document.getElementById("score").textContent = score;
+      document.getElementById("time").textContent = timeLeft;
+      
+      // Start the game logic
+      startTarget();
+
+      // Start the timer countdown
+      timerInterval = setInterval(function () {
+        timeLeft--;
+        document.getElementById("time").textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          endGame();
+        }
+      }, 1000); // Update every second
+    }
+
+    // Function to create a random target
+    function createTarget() {
+      target = document.createElement("div");
+      target.classList.add("target");
+
+      // Position the target randomly
+      target.style.top = Math.random() * (window.innerHeight - 100) + "px";
+      target.style.left = Math.random() * (window.innerWidth - 100) + "px";
+
+      document.body.appendChild(target);
+
+      // Add click event to the target
+      target.addEventListener("click", targetClicked);
+    }
+
+    // Function to start the target appearing every 1-2 seconds
+    function startTarget() {
+      gameInterval = setInterval(function () {
+        if (target) {
+          target.remove();
+        }
+        createTarget();
+      }, Math.random() * 100 + 1000); // Random time between 1-2 seconds
+    }
+
+    // Function when the target is clicked
+    function targetClicked() {
+      score++;
+      document.getElementById("score").textContent = score;
+      target.remove();
+    }
+
+    // Function to end the game
+    function endGame() {
+      alert("Jogas bué: " + score);
+      location.reload(); // Reload the page to restart the game
+    }
+  </script>
+</body>
+</html>
