@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mini Jogo: Clique no Alvo</title>
+  <title>Minigame secreto</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -20,8 +20,9 @@
       position: absolute;
       width: 100px;
       height: 100px;
-      background-color: red;
-      border-radius: 50%;
+      background-image: url('target.jpg'); /* Add custom PNG image */
+      background-size: cover; /* Ensure the image covers the area */
+      border-radius: 50%; /* Optional: Keep the rounded shape if the image is circular */
       cursor: pointer;
       transition: transform 0.3s ease;
     }
@@ -47,8 +48,8 @@
   </style>
 </head>
 <body>
-  <h1>Espanca-o-Celso!</h1>
-  <p>O objetivo é espancar o sigma até acabar o tempo.</p>
+  <h1>Acorda o Celso!</h1>
+  <p>O celso adormeceu novamente na aula de Ramiro! Clica nele para o acordares!</p>
 
   <!-- Score Display -->
   <div class="score">Pontuação: <span id="score">0</span></div>
@@ -113,7 +114,7 @@
           target.remove();
         }
         createTarget();
-      }, Math.random() * 100 + 1000); // Random time between 1-2 seconds
+      }, Math.random() * 400 + 500); // Random time between 1-2 seconds
     }
 
     // Function when the target is clicked
