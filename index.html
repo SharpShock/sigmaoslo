@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oslo Fanclub Porto Santo</title>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
   <style>
+    /* Basic Styling */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 50px;
+      padding: 20px;
       cursor: url('celso-cursor.png') 0 0, auto;
     }
+
+    /* Image Styling */
     img {
-      width: 350px;
-      height: 350px;
+      width: 100%; /* Makes the image responsive */
+      max-width: 350px; /* Set a maximum width */
+      height: auto;
       cursor: pointer;
       border: 5px solid #ffffff;
       border-radius: 10px;
@@ -21,8 +26,47 @@
       display: block;
       margin: auto;
     }
+
+    /* Hover Effect */
     img:hover {
       transform: scale(1.1);
+    }
+
+    /* Buttons */
+    button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    /* Responsive Layout */
+    @media screen and (max-width: 768px) {
+      h1 {
+        font-size: 1.5em;
+      }
+
+      h3 {
+        font-size: 1.2em;
+      }
+
+      button {
+        font-size: 14px;
+      }
+
+      img {
+        max-width: 90%; /* Make image fit smaller screens */
+      }
     }
   </style>
 </head>
@@ -31,7 +75,8 @@
   <h3>Bem-vindo ao Oslo Fanclub Porto Santo</h3>
   <p>O melhor local de culto ao nosso querido Celsinho!</p>
 
-  <img src="celso.jpeg" id="celsoImage">
+  <!-- Image -->
+  <img src="celso.jpeg" id="celsoImage" alt="Celso">
 
   <!-- Background Music -->
   <audio id="bgMusic" src="metamorphosis.mp3" preload="auto" loop></audio>
