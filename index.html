@@ -1,24 +1,62 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Oslo Fanclub Porto Santo</title>
-    </head>
-    <body>
-        <h1 style="text-align: center;">Oslo Fanclub</h1>
-        <h3 style="text-align: center;">Bem-vindo ao Oslo Fanclub Porto Santo</h3><p style="text-align: center;">
-        O melhor local de culto ao nosso querido Celsinho!</p>
-    
-        <img src="celso.jpeg" border="5" style="display: block; margin: auto; width: 350px; height: 350px;">
-        <hr>
-        <button type="button" onclick="window.location.href='/historia.html'" 
-        style="display: block; margin: 20px auto;">História</button>
-        <button type="button" onclick="window.location.href='/galeria.html'" 
-        style="display: block; margin: 20px auto;">Galeria</button>
-        <button type="button" onclick="window.location.href='/loja.html'" 
-        style="display: block; margin: 20px auto;">Loja</button>
-        <hr>
+<head>
+  <meta charset="utf-8">
+  <title>Oslo Fanclub Porto Santo</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    img {
+      width: 350px;
+      height: 350px;
+      cursor: pointer;
+      border: 5px solid #ffffff;
+      border-radius: 10px;
+      transition: transform 0.2s ease-in-out;
+      display: block;
+      margin: auto;
+    }
+    img:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Oslo Fanclub</h1>
+  <h3>Bem-vindo ao Oslo Fanclub Porto Santo</h3>
+  <p>O melhor local de culto ao nosso querido Celsinho!</p>
 
-    </body>
+  <img src="celso.jpeg" id="celsoImage">
+
+  <!-- Sound Effect -->
+  <audio id="sound" src="what the sigma.mp3" preload="auto"></audio>
+
+  <hr>
+  <button onclick="window.location.href='/historia.html'">História</button>
+  <button onclick="window.location.href='/galeria.html'">Galeria</button>
+  <button onclick="window.location.href='/loja.html'">Loja</button>
+
+  <script>
+    document.getElementById('celsoImage').addEventListener('click', launchConfetti);
+
+    function launchConfetti() {
+      // Play sound
+      const sound = document.getElementById('sound');
+      sound.currentTime = 0; // restart if it's still playing
+      sound.play();
+
+      // Trigger confetti
+      confetti({
+        particleCount: 200,
+        spread: 90,
+        origin: { x: 0.5, y: 0.5 },
+        colors: ['#ff0', '#ff5733', '#33cc33', '#0066cc'],
+      });
+    }
+  </script>
+</body>
 </html>
