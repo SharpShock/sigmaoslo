@@ -12,6 +12,9 @@
       text-align: center;
       padding: 20px;
       cursor: url('celso-cursor.png') 0 0, auto;
+      position: relative;
+      min-height: 100vh; /* Ensures body fills the screen */
+      padding-bottom: 100px; /* Extra space to prevent content overlap */
     }
 
     /* Image Styling */
@@ -50,6 +53,25 @@
       background-color: #555;
     }
 
+    /* Secret Button Styling */
+    .secret-button {
+      margin-top: 10000px; /* Make the secret button appear far down */
+      padding: 15px 30px;
+      background-color: #000000;
+      color: white;
+      font-size: 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      display: block;
+      width: auto;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+
+    .secret-button:hover {
+      background-color: #363636;
+    }
+
     /* Responsive Layout */
     @media screen and (max-width: 768px) {
       h1 {
@@ -66,6 +88,10 @@
 
       img {
         max-width: 90%; /* Make image fit smaller screens */
+      }
+
+      .secret-button {
+        font-size: 16px; /* Adjust font size for smaller screens */
       }
     }
   </style>
@@ -91,6 +117,9 @@
 
   <!-- Button to Control Music -->
   <button onclick="toggleMusic()">Música Sigma</button>
+
+  <!-- Secret Page Button -->
+  <a href="/secret.html" class="secret-button">...</a>
 
   <script>
     // Start playing the background music after user interaction
