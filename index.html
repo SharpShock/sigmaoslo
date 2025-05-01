@@ -33,6 +33,9 @@
 
   <img src="celso.jpeg" id="celsoImage">
 
+  <!-- Background Music -->
+  <audio id="bgMusic" src="metamorphosis.mp3" preload="auto" loop></audio>
+
   <!-- Sound Effect -->
   <audio id="sound" src="what the sigma.mp3" preload="auto"></audio>
 
@@ -41,9 +44,19 @@
   <button onclick="window.location.href='/galeria.html'">Galeria</button>
   <button onclick="window.location.href='/loja.html'">Loja</button>
 
+  <!-- Button to Control Music -->
+  <button onclick="toggleMusic()">Música Sigma</button>
+
   <script>
+    // Start playing the background music after user interaction
+    document.addEventListener('click', function() {
+      const bgMusic = document.getElementById('bgMusic');
+      bgMusic.play(); // Start playing music when user clicks anywhere
+    });
+
     document.getElementById('celsoImage').addEventListener('click', launchConfetti);
 
+    // Function to play confetti and sound when image is clicked
     function launchConfetti() {
       // Play sound
       const sound = document.getElementById('sound');
@@ -57,6 +70,16 @@
         origin: { x: 0.5, y: 0.5 },
         colors: ['#ff0', '#ff5733', '#33cc33', '#0066cc'],
       });
+    }
+
+    // Function to toggle music play/pause
+    function toggleMusic() {
+      const bgMusic = document.getElementById('bgMusic');
+      if (bgMusic.paused) {
+        bgMusic.play();
+      } else {
+        bgMusic.pause();
+      }
     }
   </script>
 </body>
